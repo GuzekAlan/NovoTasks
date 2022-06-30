@@ -16,7 +16,7 @@ Function checks if 2 triangles (struct Triangle implemented) are colliding. To t
 
 ### Task 2
 
-Simulation was made with SFML. Collision can be checked using only corners of rectangle (approx) or with every collision.
+Simulation was made with SFML. On collision figures change colors to green, and without collision they are red.
 
 <img src="./img/Task2.png" alt="Task 2" style="width:70%;" />
 
