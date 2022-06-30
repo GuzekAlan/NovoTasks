@@ -1,9 +1,9 @@
 #include "Cropping.hpp"
 
 int main(){
-    const std::string txt = "        Some Text     ";
-    std::vector<char> text_vector = {'\t', ' ', ' ', '\t', 't', 'x', 't', '\t', '\a'};
-    auto txt2 = "           Some Text     ";
+    const std::string txt = "  \t  \n  Some Text.   \n \t  ";
+    std::vector<char> text_vector = {'\t', ' ', ' ', '\t', 't', 'x', 't', '.', '\t', '\a'};
+    auto txt2 = "  \n \t     Some Text. \t  \n \n";
     auto text_const = cropp(txt);
     cropp(text_vector);
     for(auto el: text_vector){

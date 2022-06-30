@@ -1,5 +1,5 @@
 #pragma once
-
+// HEADER ONLY
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cmath>
@@ -52,29 +52,21 @@ auto intersectCircleRect(const sf::RectangleShape& rectangle, const sf::CircleSh
         Lines[i] = LineFunction(Points[i], Points[(i+1)%4]);
     }
 
-    for(auto& line : Lines){
-        std::cout << "a: " << line.m_a << "\t b: " << line.m_b << std::endl;
-    }
-    std::cout << "---" << std::endl;
 
     if (std::any_of(Lines.begin(), Lines.end(), [&circle](const LineFunction<float> &line) {
         try{
             auto intersection = line.intersectLines(line.getOrthogonal(getCircleCenter(circle)));
             if(line.isWithinBoundries(intersection)){
-                std::cout << "X: " << intersection.x << "\tY: " << intersection.y << std::endl;
-                std::cout << "distance: " << getVectorLength(intersection - getCircleCenter(circle)) << std::endl;
                 return isPointInCircle(intersection, circle);
-
-//            std::cout << "Circle: " << getCircleCenter(circle).x << "\t" << getCircleCenter(circle).y << std::endl;
             }
-
             return false;
-        }catch(const std::invalid_argument& ex) {return false;}
-
+        }catch(const std::invalid_argument& ex) {
+            std::cout << "Parallel lines." << std::endl;
+            return false;
+        }
     })) {
         return true;
     }
-
 
     return false;
 }
